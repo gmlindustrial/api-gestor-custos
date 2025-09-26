@@ -1,0 +1,17 @@
+version: "3.9"
+
+services:
+  backend:
+    build: .
+    container_name: fastapi_app
+    # Porta externa 8000 mapeada para a interna 8000 do contêiner
+    ports:
+      - "8000:8000"
+    # Variáveis de ambiente da sua aplicação
+    environment:
+      # exemplo: URL do Postgres já rodando na VPS
+      DATABASE_URL: "postgresql+psycopg2://user:Digitalsegurogml2024!@host:5433/db"
+      # outras variáveis que você usa (SECRET_KEY etc.)
+      # SECRET_KEY: "sua_chave_secreta"
+    # Reinicia o container automaticamente se cair
+    restart: always
