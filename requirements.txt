@@ -19,3 +19,4 @@ redis==5.0.1
 reportlab==4.0.7
 jinja2==3.1.2
 pillow==10.1.0
+gunicorn==21.2.0
