@@ -22,7 +22,6 @@ from app.services.nf_service import NotaFiscalService
 
 router = APIRouter(trailing_slash=False)
 
-router = APIRouter(trailing_slash=False)
 @router.get("/", response_model=ContractListResponse)
 async def list_contracts(
     skip: int = Query(0, ge=0),
