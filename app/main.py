@@ -7,6 +7,7 @@ app = FastAPI(
     title="GMX - Módulo de Custos de Obras",
     description="Sistema de gestão de custos de construção para GMX",
     version="1.0.0",
+    redirect_slashes=False
 )
 
 # FRONTEND ORIGINS
