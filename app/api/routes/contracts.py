@@ -22,7 +22,7 @@ from app.services.nf_service import NotaFiscalService
 
 router = APIRouter()
 
-@router.get("/", response_model=ContractListResponse)
+@router.get("", response_model=ContractListResponse)
 async def list_contracts(
     skip: int = Query(0, ge=0),
     limit: int = Query(10, ge=1, le=100),
@@ -174,7 +174,7 @@ async def get_contract(
     return ContractDetailResponse(**contract_data)
 
 
-@router.post("/", response_model=ContractResponse)
+@router.post("", response_model=ContractResponse)
 async def create_contract(
     name: str = Form(...),
     client: str = Form(...),

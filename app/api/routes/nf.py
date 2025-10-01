@@ -23,7 +23,7 @@ from app.schemas.notas_fiscais import (
 router = APIRouter()
 
 
-@router.get("/")
+@router.get("")
 async def get_nfs(
     skip: int = Query(0, ge=0),
     limit: int = Query(10, ge=1, le=100),
