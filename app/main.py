@@ -9,15 +9,20 @@ app = FastAPI(
     version="1.0.0",
 )
 
+# FRONTEND ORIGINS
+origins = [
+    "http://localhost:8080",                  # React local
+    "https://gestor-custos.gmxindustrial.com.br",  # produção
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=False,
+    allow_origins=origins,
+    allow_credentials=True,      # necessário para cookies ou headers auth
     allow_methods=["*"],
     allow_headers=["*"],
     expose_headers=["*"],
 )
-
 
 app.include_router(api_router, prefix="/api/v1")
 
