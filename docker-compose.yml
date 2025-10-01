@@ -10,7 +10,7 @@ services:
     # Variáveis de ambiente da sua aplicação
     environment:
       # exemplo: URL do Postgres já rodando na VPS
-      DATABASE_URL: "postgresql+psycopg2://user:Digitalsegurogml2024!@host:5433/db"
+      DATABASE_URL: "postgresql+psycopg2://user:Digitalsegurogml2024!@db:5432/db"
       # outras variáveis que você usa (SECRET_KEY etc.)
       # SECRET_KEY: "sua_chave_secreta"
     # Reinicia o container automaticamente se cair
