@@ -1,23 +1,30 @@
+# Use uma imagem oficial Python
 FROM python:3.11-slim
 
-# Evita .pyc e força stdout/stderr direto
-ENV PYTHONDONTWRITEBYTECODE=1
-ENV PYTHONUNBUFFERED=1
-
+# Defina o diretório de trabalho
 WORKDIR /app
 
-# Atualiza pip e instala dependências do sistema
-RUN apt-get update && \
-    apt-get install -y build-essential libpq-dev && \
-    pip install --upgrade pip && \
-    rm -rf /var/lib/apt/lists/*
+# Instale dependências do sistema necessárias para bcrypt e outras libs
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    libffi-dev \
+    libssl-dev \
+    git \
+    curl \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
-# Copia requirements e instala
+# Copie requirements
 COPY requirements.txt .
+
+# Instale dependências Python
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copia todo o código da aplicação
+# Copie todo o código da aplicação
 COPY . .
 
-# Gunicorn com workers uvicorn
-CMD ["gunicorn", "-k", "uvicorn.workers.UvicornWorker", "app.main:app", "--bind", "0.0.0.0:8000"]
+# Exponha a porta da aplicação
+EXPOSE 8000
+
+# Comando para rodar a aplicação
+CMD ["gunicorn", "-k", "uvicorn.workers.UvicornWorker", "--bind", "0.0.0.0:8000", "app.main:app"]
