@@ -20,7 +20,7 @@ from app.schemas.contracts import (
 )
 from app.services.nf_service import NotaFiscalService
 
-router = APIRouter(trailing_slash=False)
+router = APIRouter()
 
 @router.get("/", response_model=ContractListResponse)
 async def list_contracts(

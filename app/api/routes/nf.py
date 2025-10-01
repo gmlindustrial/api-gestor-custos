@@ -20,7 +20,7 @@ from app.schemas.notas_fiscais import (
     NotaFiscalItemUpdate
 )
 
-router = APIRouter(trailing_slash=False)
+router = APIRouter()
 
 
 @router.get("/")
